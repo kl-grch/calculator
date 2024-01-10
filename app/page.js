@@ -1,95 +1,57 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import "./homePage.scss";
+
+import ButtonRound from "./components/ButtonRound/ButtonRound";
+import { useState } from "react";
 
 export default function Home() {
+  const [count, setCount] = useState(0);
+  const [numberOne, setNumberOne] = useState(0);
+  const [numberTwo, setNumberTwo] = useState(0);
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+    <main>
+      <div className="calculator">
+        <div className="calculator__input">{count}</div>
+        <div className="calculator__buttons">
+          <div className="buttons__memory">
+            <ButtonRound
+              title="AC"
+              colorButton={"#A5A5A5"}
+              colorText={"#000000"}
             />
-          </a>
+            <ButtonRound
+              title="±"
+              colorButton={"#A5A5A5"}
+              colorText={"#000000"}
+            />
+            <ButtonRound
+              title="%"
+              colorButton={"#A5A5A5"}
+              colorText={"#000000"}
+            />
+          </div>
+          <div className="buttons__signs">
+            <ButtonRound title="÷" colorButton={"#FF9F0B"} />
+            <ButtonRound title="×" colorButton={"#FF9F0B"} />
+            <ButtonRound title="-" colorButton={"#FF9F0B"} />
+            <ButtonRound title="+" colorButton={"#FF9F0B"} />
+            <ButtonRound title="=" colorButton={"#FF9F0B"} />
+          </div>
+          <div className="buttons__numbers">
+            <ButtonRound title="1" onClick={() => setCount(1)} />
+            <ButtonRound title="2" onClick={() => setCount(2)} />
+            <ButtonRound title="3" onClick={() => setCount(3)} />
+            <ButtonRound title="4" onClick={() => setCount(4)} />
+            <ButtonRound title="5" onClick={() => setCount(5)} />
+            <ButtonRound title="6" onClick={() => setCount(6)} />
+            <ButtonRound title="7" onClick={() => setCount(7)} />
+            <ButtonRound title="8" onClick={() => setCount(8)} />
+            <ButtonRound title="9" onClick={() => setCount(9)} />
+            <ButtonRound title="0" onClick={() => setCount(0)} />
+            <ButtonRound title="," onClick={() => setCount(",")} />
+          </div>
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
     </main>
-  )
+  );
 }

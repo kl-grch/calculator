@@ -1,0 +1,49 @@
+.calculator {
+  width: 440px;
+  height: 100vh;
+  margin: 0 auto;
+  &__input {
+    height: 200px;
+    padding: 20px;
+    font-size: 120px;
+    text-align: right;
+  }
+  &__buttons {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 320px 100px;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    grid-template-areas:
+      "memory signs"
+      "numbers signs";
+    .buttons {
+      &__memory {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: 100px 100px 100px;
+        justify-content: stretch;
+        justify-items: center;
+        align-items: center;
+        grid-area: memory;
+      }
+      &__signs {
+        display: grid;
+        grid-template-columns: 100px;
+        justify-content: stretch;
+        justify-items: center;
+        gap: 10px;
+        grid-area: signs;
+      }
+      &__numbers {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        grid-template-rows: repeat(4, 1fr);
+        gap: 10px;
+        justify-content: stretch;
+        justify-items: center;
+        grid-area: numbers;
+      }
+    }
+  }
+}
