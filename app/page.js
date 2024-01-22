@@ -71,7 +71,6 @@ export default function Home() {
     // setNumberOne((nO) => Number(nO));
     // setNumberOne((nO) => String(nO) + number);
     // setNumberOne((nO) => Number(nO));
-    setNumberOne
 
   }
 
