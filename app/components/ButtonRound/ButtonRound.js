@@ -1,21 +1,24 @@
 "use client";
 
+import { useContext } from "react";
 import "./buttonRound.scss";
+import { TypeContext } from "@/app/TypeContext";
 
-export default function ButtonRound({
-  title = "?",
-  onClick,
-  className,
-  colorButton,
-  colorText,
-}) {
+export default function ButtonRound({ value, onClick }) {
+  const type = useContext(TypeContext);
+  let className;
+
+  if (type === "sign") {
+    className = "button--sign";
+  } else if (type === "other") {
+    className = "button--other";
+  } else {
+    className = null;
+  }
+
   return (
-    <button
-      className={className}
-      onClick={onClick}
-      style={{ backgroundColor: colorButton, color: colorText }}
-    >
-      {title}
+    <button className={"button " + className} onClick={onClick}>
+      {value}
     </button>
   );
 }
