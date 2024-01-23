@@ -47,7 +47,7 @@ export default function Home() {
       case "+":
         result = numberOne + numberTwo;
         break;
-      case "-":
+      case "−":
         result = numberOne - numberTwo;
         break;
       case "×":
@@ -135,7 +135,9 @@ export default function Home() {
   return (
     <main>
       <div className="calculator">
-        <div className="calculator__input">{getResult()}</div>
+        <div className="calculator__input">
+          <p>{getResult()}</p>
+        </div>
         <div className="calculator__buttons">
           <TypeContext.Provider value={"other"}>
             <div className="buttons__memory">
