@@ -6,7 +6,7 @@ import { useState } from "react";
 import { TypeContext } from "./TypeContext";
 
 const numbers = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0];
-const signs = ["÷", "×", "-", "+"];
+const signs = ["÷", "×", "−", "+"];
 
 export default function Home() {
   const [numberOne, setNumberOne] = useState(0); // первое число
@@ -71,7 +71,6 @@ export default function Home() {
     // setNumberOne((nO) => Number(nO));
     // setNumberOne((nO) => String(nO) + number);
     // setNumberOne((nO) => Number(nO));
-
   }
 
   function getResult() {
@@ -123,6 +122,16 @@ export default function Home() {
     }
   }
 
+  function handleClickNumber(number) {
+    // !enterSign
+    //   ? () => handleClickNumberOne(number)
+    //   : () => handleClickNumberTwo(number);
+    if (!enterSign) {
+      return handleClickNumberOne(number);
+    }
+    return handleClickNumberTwo(number);
+  }
+
   return (
     <main>
       <div className="calculator">
@@ -164,11 +173,12 @@ export default function Home() {
               <ButtonRound
                 key={number}
                 value={number}
-                onClick={
-                  !enterSign
-                    ? () => handleClickNumberOne(number)
-                    : () => handleClickNumberTwo(number)
+                style={
+                  number == 0
+                    ? { gridArea: "zero", width: "100%", borderRadius: "80px" }
+                    : null
                 }
+                onClick={() => handleClickNumber(number)}
               />
             ))}
             <ButtonRound value="," onClick={handleClickSignDot} />

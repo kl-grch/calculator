@@ -1,7 +1,11 @@
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.scss";
 
-const inter = Inter({ subsets: ["latin"] });
+const myFont = localFont({
+  src: "./fonts/SFProDisplay-Regular.woff2",
+  display: "swap",
+  variable: "--my-font",
+});
 
 export const metadata = {
   title: "Calculator",
@@ -10,8 +14,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html className={myFont.className} lang="en">
+      <body>{children}</body>
     </html>
   );
 }

@@ -1,9 +1,9 @@
 {
   "theme_color": "#000000",
-  "background_color": "#040404",
+  "background_color": "#000000",
   "display": "fullscreen",
   "scope": "/",
   "start_url": "/",
   "name": "Calculator",
-  "short_name": "calculator"
+  "short_name": "Calculator"
 }

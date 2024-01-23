@@ -44,6 +44,11 @@
         justify-content: stretch;
         justify-items: center;
         grid-area: numbers;
+        grid-template-areas:
+          ". . ."
+          ". . ."
+          ". . ."
+          "zero zero .";
       }
     }
   }
