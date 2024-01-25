@@ -5,22 +5,42 @@
   border-radius: 50%;
   font-size: 2.8em;
   font-family: var(--my-font);
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+  cursor: pointer;
 
   background-color: #333333;
   color: white;
+  &:hover,
+  &:active {
+    background-color: #737373;
+  }
+
   &--sign {
     background-color: #ff9f0b;
+    &:hover {
+      background-color: #fbc68b;
+      color: white;
+    }
     &:active {
       background-color: white;
       color: #ff9f0b;
     }
-    &:hover {
-      background-color: white;
-      color: #ff9f0b;
-    }
   }
+
   &--other {
     background-color: #a5a5a5;
     color: #000000;
+    &:hover,
+    &:active {
+      background-color: #d9d9d9;
+    }
   }
+}
+
+.zero {
+  grid-area: zero;
+  width: 100%;
+  border-radius: 80px;
 }
