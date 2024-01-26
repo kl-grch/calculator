@@ -20,7 +20,6 @@ export default function Home() {
   const [result, setResult] = useState(false);
   const [enterSignDot, setEnterSignDot] = useState(false);
 
-  // ✅ Кнопки ввода чисел
   function handleClickNumber(number) {
     if (enterNumberOne && !enterNumberTwo && !enterSign && !result) {
       getStateNumber(number, setNumberOne, numberOne);
@@ -37,26 +36,43 @@ export default function Home() {
   function getStateNumber(number, setStateNumber, stateNumber) {
     if (stateNumber === 0 && number === 0) {
       false;
-      console.log("1 variant"); //  ✅
     } else if (stateNumber === 0 && number !== 0) {
-      setStateNumber(number);
-      console.log("2 variant"); //  ✅
+      setStateNumber(String(number));
+      console.log("1 variant");
     } else if (stateNumber !== 0 && !enterSignDot) {
-      setStateNumber(String(stateNumber) + number);
-      console.log("3 variant"); //  ✅
+      setStateNumber((n) => String(n) + String(number));
+      console.log("2 variant");
     } else if (stateNumber.endsWith(".")) {
-      setStateNumber(false);
-      if (number === 0) {
-        setStateNumber(stateNumber + "0");
-      } else {
-        setStateNumber((n) => String(n) + String(number));
-        setStateNumber((n) => Number(n));
-      }
-      console.log("4 variant");
+      setStateNumber(stateNumber + "s");
     }
   }
 
-  // ✅ Нажатие на кнопку равно
+  function handleClickSignDot() {
+    if (numberOne === 0 && enterNumberOne) {
+      setNumberOne("0.");
+    } else if (
+      Number.isInteger(Number(numberOne)) &&
+      enterNumberOne &&
+      !numberOne.endsWith(".") &&
+      numberOne != 0
+    ) {
+      setNumberOne(String(numberOne) + ".");
+    } else if (String(numberOne).endsWith(".")) {
+      false;
+    } else if (numberTwo === 0 && enterNumberTwo) {
+      setNumberTwo("0.");
+    } else if (
+      Number.isInteger(Number(numberTwo)) &&
+      enterNumberTwo &&
+      !numberTwo.endsWith(".") &&
+      numberTwo != 0
+    ) {
+      setNumberTwo(String(numberTwo) + ".");
+    } else if (String(numberTwo).endsWith(".")) {
+      false;
+    }
+  }
+
   function handleClickSignEqual() {
     function setStateEqual() {
       setResult(true);
@@ -81,9 +97,6 @@ export default function Home() {
       setStateEqual();
     }
   }
-
-  //  ✅ Операционные кнопки делить / умножить / вычесть / сложить / равно
-  // Доработать повторное нажатие на кнопку, при повторном нажатии на кнопку сначала должно вычислиться выражение нажатое на первую кнопку знака
 
   function handleClickSign(sign) {
     if (!enterNumberOne && enterNumberTwo && enterSign && !result) {
@@ -113,7 +126,6 @@ export default function Home() {
     }
   }
 
-  // ✅ Функция вывода числа на экран
   function getResult() {
     if (enterNumberOne) {
       return numberOne;
@@ -122,7 +134,6 @@ export default function Home() {
     }
   }
 
-  // ✅ Функциональные кнопки очистить данные / плюс - минус / процент от числа
   function handleClickFunctionalButton(functionalButton) {
     if (functionalButton === "AC") {
       if (
@@ -158,21 +169,6 @@ export default function Home() {
       } else if (enterNumberTwo && numberTwo !== 0) {
         setNumberTwo(numberTwo / 100);
       }
-    }
-  }
-
-  // ✅ Кнопка установки значения запятой
-  function handleClickSignDot() {
-    if (numberOne === 0 && enterNumberOne) {
-      setNumberOne("0.");
-    } else if (Number.isInteger(numberOne) && enterNumberOne) {
-      setNumberOne(String(numberOne) + ".");
-      // setEnterSignDot(true);
-    } else if (numberTwo === 0 && enterNumberTwo) {
-      setNumberTwo("0.");
-    } else if (Number.isInteger(numberTwo) && enterNumberTwo) {
-      setNumberTwo(String(numberTwo) + ".");
-      // setEnterSignDot(true);
     }
   }
 
