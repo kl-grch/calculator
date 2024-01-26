@@ -38,12 +38,8 @@ export default function Home() {
       false;
     } else if (stateNumber === 0 && number !== 0) {
       setStateNumber(String(number));
-      console.log("1 variant");
     } else if (stateNumber !== 0 && !enterSignDot) {
       setStateNumber((n) => String(n) + String(number));
-      console.log("2 variant");
-    } else if (stateNumber.endsWith(".")) {
-      setStateNumber(stateNumber + "s");
     }
   }
 
@@ -84,16 +80,16 @@ export default function Home() {
     if (sign === null) {
       false;
     } else if (sign === "+") {
-      setNumberOne(numberOne + numberTwo);
+      setNumberOne(Number(numberOne) + Number(numberTwo));
       setStateEqual();
     } else if (sign === "-") {
-      setNumberOne(numberOne - numberTwo);
+      setNumberOne(Number(numberOne) - Number(numberTwo));
       setStateEqual();
     } else if (sign === "×") {
-      setNumberOne(numberOne * numberTwo);
+      setNumberOne(Number(numberOne) * Number(numberTwo));
       setStateEqual();
     } else if (sign === "÷") {
-      setNumberOne(numberOne / numberTwo);
+      setNumberOne(Number(numberOne) / Number(numberTwo));
       setStateEqual();
     }
   }
@@ -102,17 +98,17 @@ export default function Home() {
     if (!enterNumberOne && enterNumberTwo && enterSign && !result) {
       let calculation;
       if (sign === "+") {
-        calculation = numberOne + numberTwo;
+        calculation = Number(numberOne) + Number(numberTwo);
       } else if (sign === "-") {
-        calculation = numberOne - numberTwo;
+        calculation = Number(numberOne) - Number(numberTwo);
       } else if (sign === "÷") {
         if (numberTwo === 0) {
           calculation = 0;
         } else {
-          calculation = numberOne / numberTwo;
+          calculation = Number(numberOne) / Number(numberTwo);
         }
       } else if (sign === "×") {
-        calculation = numberOne * numberTwo;
+        calculation = Number(numberOne) * Number(numberTwo);
       }
       setResult(true);
       setEnterSign(true);
