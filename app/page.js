@@ -21,53 +21,38 @@ export default function Home() {
   const [enterSignDot, setEnterSignDot] = useState(false);
 
   // ✅ Кнопки ввода чисел
-  // Доработать ввод чисел, при нажатие на 0 с установленным значение запятой, не вводится число 0
   function handleClickNumber(number) {
     if (enterNumberOne && !enterNumberTwo && !enterSign && !result) {
-      getNumberOne(number);
+      getStateNumber(number, setNumberOne, numberOne);
     } else if (enterNumberOne && !enterNumberTwo && enterSign) {
       setEnterNumberTwo(true);
       setEnterNumberOne(false);
-      getNumberTwo(number);
+      getStateNumber(number, setNumberTwo, numberTwo);
       setResult(false);
     } else if (!enterNumberOne && enterNumberTwo && enterSign && !result) {
-      getNumberTwo(number);
+      getStateNumber(number, setNumberTwo, numberTwo);
     }
   }
 
-  // ✅ Функция ввода первого числа
-  function getNumberOne(number) {
-    if (Number.isInteger(number) && enterSignDot) {
-      setNumberOne((nO) => Number(nO)); // 1
-      setNumberOne((nO) => String(`${nO}.`) + number); //
-      setNumberOne((nO) => Number(nO));
-      setEnterSignDot(false);
-    } else if (!Number.isInteger(number) && !enterSignDot) {
-      setNumberOne((nO) => Number(nO));
-      setNumberOne((nO) => String(nO) + number);
-      setNumberOne((nO) => Number(nO));
-    } else {
-      setNumberOne((nO) => Number(nO));
-      setNumberOne((nO) => String(nO) + number);
-      setNumberOne((nO) => Number(nO));
-    }
-  }
-
-  // ✅ Функция ввода второго числа
-  function getNumberTwo(number) {
-    if (Number.isInteger(number) && enterSignDot) {
-      setNumberTwo((nT) => Number(nT));
-      setNumberTwo((nT) => String(`${nT}.`) + number);
-      setNumberTwo((nT) => Number(nT));
-      setEnterSignDot(false);
-    } else if (!Number.isInteger(number) && !enterSignDot) {
-      setNumberTwo((nT) => Number(nT));
-      setNumberTwo((nT) => String(nT) + number);
-      setNumberTwo((nT) => Number(nT));
-    } else {
-      setNumberTwo((nT) => Number(nT));
-      setNumberTwo((nT) => String(nT) + number);
-      setNumberTwo((nT) => Number(nT));
+  function getStateNumber(number, setStateNumber, stateNumber) {
+    if (stateNumber === 0 && number === 0) {
+      false;
+      console.log("1 variant"); //  ✅
+    } else if (stateNumber === 0 && number !== 0) {
+      setStateNumber(number);
+      console.log("2 variant"); //  ✅
+    } else if (stateNumber !== 0 && !enterSignDot) {
+      setStateNumber(String(stateNumber) + number);
+      console.log("3 variant"); //  ✅
+    } else if (stateNumber.endsWith(".")) {
+      setStateNumber(false);
+      if (number === 0) {
+        setStateNumber(stateNumber + "0");
+      } else {
+        setStateNumber((n) => String(n) + String(number));
+        setStateNumber((n) => Number(n));
+      }
+      console.log("4 variant");
     }
   }
 
@@ -123,8 +108,8 @@ export default function Home() {
       setNumberTwo(0);
       setEnterNumberTwo(false);
     } else {
-      setSign(sign); // нажимаем на кнопку и устанавливаем значение знака
-      setEnterSign(true); // устанавливаем значение, что кнопка знака нажата
+      setSign(sign);
+      setEnterSign(true);
     }
   }
 
@@ -178,10 +163,16 @@ export default function Home() {
 
   // ✅ Кнопка установки значения запятой
   function handleClickSignDot() {
-    if (Number.isInteger(numberOne) && enterNumberOne) {
-      setEnterSignDot(true);
+    if (numberOne === 0 && enterNumberOne) {
+      setNumberOne("0.");
+    } else if (Number.isInteger(numberOne) && enterNumberOne) {
+      setNumberOne(String(numberOne) + ".");
+      // setEnterSignDot(true);
+    } else if (numberTwo === 0 && enterNumberTwo) {
+      setNumberTwo("0.");
     } else if (Number.isInteger(numberTwo) && enterNumberTwo) {
-      setEnterSignDot(true);
+      setNumberTwo(String(numberTwo) + ".");
+      // setEnterSignDot(true);
     }
   }
 
@@ -217,11 +208,12 @@ export default function Home() {
             </div>
           </TypeContext.Provider>
 
-          <TypeContext.Provider value={"sign"}>
+          <TypeContext.Provider value={"sign"} activeStatus={enterSign}>
             <div className="buttons__signs">
               {signs.map((sign) => (
                 <ButtonRound
                   key={sign}
+                  activeStatus={enterSign}
                   value={sign}
                   onClick={() => handleClickSign(sign)}
                 />

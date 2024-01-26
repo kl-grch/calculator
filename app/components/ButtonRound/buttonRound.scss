@@ -3,12 +3,13 @@
   width: 80px;
   border: none;
   border-radius: 50%;
-  font-size: 2.8em;
+  font-size: 2.4em;
   font-family: var(--my-font);
   -moz-user-select: none;
   -khtml-user-select: none;
   user-select: none;
   cursor: pointer;
+  padding: 10px;
 
   background-color: #333333;
   color: white;
@@ -43,4 +44,6 @@
   grid-area: zero;
   width: 100%;
   border-radius: 80px;
+  text-align: left;
+  padding-left: 25px;
 }
